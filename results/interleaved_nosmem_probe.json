@@ -1,0 +1,29 @@
+[
+  {
+    "M": 4,
+    "existing_ms": 0.10342399775981903,
+    "nosmem_ms": 0.10342399775981903,
+    "nosmem_vs_existing": 1.0,
+    "relative_l2": 0.0,
+    "exact_fraction": 1.0,
+    "amax_relative_error": 0.0
+  },
+  {
+    "M": 16,
+    "existing_ms": 0.10956799983978271,
+    "nosmem_ms": 0.10956799983978271,
+    "nosmem_vs_existing": 1.0,
+    "relative_l2": 0.0,
+    "exact_fraction": 1.0,
+    "amax_relative_error": 0.0
+  },
+  {
+    "M": 64,
+    "existing_ms": 0.14028799533843994,
+    "nosmem_ms": 0.14028799533843994,
+    "nosmem_vs_existing": 1.0,
+    "relative_l2": 0.0,
+    "exact_fraction": 1.0,
+    "amax_relative_error": 0.0
+  }
+]

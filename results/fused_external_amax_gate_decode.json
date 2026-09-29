@@ -1,0 +1,61 @@
+{
+  "gpu": "NVIDIA B200",
+  "cache_mode": "cold_l2",
+  "l2_flush_bytes": 536870912,
+  "rounds": 30,
+  "amax_mode": "external_running_max",
+  "results": [
+    {
+      "layer": "gate",
+      "M": 1,
+      "N": 28672,
+      "K": 8192,
+      "tile": "64x64x128",
+      "fused_external_amax_ms": 0.06353599950671196,
+      "unfused_ms": 0.09932799637317657,
+      "speedup": 1.5633341278070796,
+      "fused_rel_l2_vs_fp32": 0.026283323764801025,
+      "unfused_rel_l2_vs_fp32": 0.026431763544678688,
+      "amax_relative_error": 6.51770806968299e-07
+    },
+    {
+      "layer": "gate",
+      "M": 4,
+      "N": 28672,
+      "K": 8192,
+      "tile": "64x64x128",
+      "fused_external_amax_ms": 0.07475200295448303,
+      "unfused_ms": 0.11161600053310394,
+      "speedup": 1.4931506330481557,
+      "fused_rel_l2_vs_fp32": 0.026222439482808113,
+      "unfused_rel_l2_vs_fp32": 0.02646021731197834,
+      "amax_relative_error": 7.479728866239795e-07
+    },
+    {
+      "layer": "gate",
+      "M": 16,
+      "N": 28672,
+      "K": 8192,
+      "tile": "64x64x128",
+      "fused_external_amax_ms": 0.06143999844789505,
+      "unfused_ms": 0.10342399775981903,
+      "speedup": 1.6833333393966314,
+      "fused_rel_l2_vs_fp32": 0.02623598463833332,
+      "unfused_rel_l2_vs_fp32": 0.02640342526137829,
+      "amax_relative_error": 2.92990613793109e-06
+    },
+    {
+      "layer": "gate",
+      "M": 64,
+      "N": 28672,
+      "K": 8192,
+      "tile": "64x64x128",
+      "fused_external_amax_ms": 0.06247999891638756,
+      "unfused_ms": 0.11160000041127205,
+      "speedup": 1.786171612464626,
+      "fused_rel_l2_vs_fp32": 0.026266703382134438,
+      "unfused_rel_l2_vs_fp32": 0.02650969848036766,
+      "amax_relative_error": 1.0459058538304732e-06
+    }
+  ]
+}

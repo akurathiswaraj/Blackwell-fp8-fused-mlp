@@ -1,0 +1,11 @@
+[1500] python3.12@127.0.0.1
+  void device_kernel<GemmUniversal<tuple<int, int, int, int>, CollectiveMma<MainloopSm100TmaUmmaWarpSpecialized<9, 1, 4, tuple<C<1>, C<2>, C<1>>>, tuple<C<64>, C<128>, C<128>>, float_e4m3_t, tuple<long, C<1>, long>, float_e4m3_t, tuple<long, C<1>, long>, TiledMMA<MMA_Atom<MMA_Traits<SM100_MMA_F8F6F4_SS, float_e4m3_t, float_e4m3_t, float, C<64>, C<128>, integral_constant<Major, 0>, integral_constant<Major, 0>, integral_constant<ScaleIn, 0>, integral_constant<ScaleIn, 0>>>, Layout<tuple<C<1>, C<1>, C<1>>, tuple<C<0>, C<0>, C<0>>>, tuple<Underscore, Underscore, Underscore>>, SM90_TMA_LOAD_MULTICAST, ComposedLayout<Swizzle<3, 4, 3>, smem_ptr_flag_bits<8>, Layout<tuple<C<8>, C<128>>, tuple<C<128>, C<1>>>>, void, identity, SM90_TMA_LOAD, ComposedLayout<Swizzle<3, 4, 3>, smem_ptr_flag_bits<8>, Layout<tuple<C<8>, C<128>>, tuple<C<128>, C<1>>>>, void, identity>, Sm100TmaWarpSpecializedAdapter<<unnamed>::DirectSwiGLUEpilogue>, void, void>>(Params) (1, 448, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 10.0
+    Section: Command line profiler metrics
+    --------------------- ----------- ------------
+    Metric Name           Metric Unit Metric Value
+    --------------------- ----------- ------------
+    dram__bytes.sum             Mbyte       475.52
+    dram__bytes_read.sum        Mbyte       470.92
+    dram__bytes_write.sum       Mbyte         4.60
+    --------------------- ----------- ------------
+

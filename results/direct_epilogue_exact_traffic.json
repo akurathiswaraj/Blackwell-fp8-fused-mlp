@@ -1,0 +1,69 @@
+{
+  "methodology": "Logical tensor bytes eliminated relative to the two-kernel implementation. The BF16 [M,2N] tensor is neither written nor read.",
+  "caveat": "These are exact algorithmic bytes, not a claim that every logical byte reaches DRAM; cache behavior is measured separately.",
+  "rows": [
+    {
+      "category": "decode",
+      "M": 1,
+      "intermediate_shape": "[1, 57344]",
+      "bf16_intermediate_bytes": 114688,
+      "exact_read_write_bytes_eliminated": 229376,
+      "exact_mib_eliminated": 0.21875,
+      "compact_fp8_output_bytes": 28672
+    },
+    {
+      "category": "decode",
+      "M": 4,
+      "intermediate_shape": "[4, 57344]",
+      "bf16_intermediate_bytes": 458752,
+      "exact_read_write_bytes_eliminated": 917504,
+      "exact_mib_eliminated": 0.875,
+      "compact_fp8_output_bytes": 114688
+    },
+    {
+      "category": "decode",
+      "M": 16,
+      "intermediate_shape": "[16, 57344]",
+      "bf16_intermediate_bytes": 1835008,
+      "exact_read_write_bytes_eliminated": 3670016,
+      "exact_mib_eliminated": 3.5,
+      "compact_fp8_output_bytes": 458752
+    },
+    {
+      "category": "decode",
+      "M": 64,
+      "intermediate_shape": "[64, 57344]",
+      "bf16_intermediate_bytes": 7340032,
+      "exact_read_write_bytes_eliminated": 14680064,
+      "exact_mib_eliminated": 14.0,
+      "compact_fp8_output_bytes": 1835008
+    },
+    {
+      "category": "prefill",
+      "M": 512,
+      "intermediate_shape": "[512, 57344]",
+      "bf16_intermediate_bytes": 58720256,
+      "exact_read_write_bytes_eliminated": 117440512,
+      "exact_mib_eliminated": 112.0,
+      "compact_fp8_output_bytes": 14680064
+    },
+    {
+      "category": "prefill",
+      "M": 2048,
+      "intermediate_shape": "[2048, 57344]",
+      "bf16_intermediate_bytes": 234881024,
+      "exact_read_write_bytes_eliminated": 469762048,
+      "exact_mib_eliminated": 448.0,
+      "compact_fp8_output_bytes": 58720256
+    },
+    {
+      "category": "prefill",
+      "M": 8192,
+      "intermediate_shape": "[8192, 57344]",
+      "bf16_intermediate_bytes": 939524096,
+      "exact_read_write_bytes_eliminated": 1879048192,
+      "exact_mib_eliminated": 1792.0,
+      "compact_fp8_output_bytes": 234881024
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "methodology": "Nsight Compute dram__bytes counters, profiling the direct SwiGLU kernel once and both kernels of the previous implementation once.",
+  "decode_m64": {
+    "direct_total_mbyte": 475.52,
+    "two_kernel_gemm_mbyte": 479.77,
+    "two_kernel_postop_mbyte": 7.35,
+    "two_kernel_total_mbyte": 487.12,
+    "measured_reduction_mbyte": 11.6,
+    "measured_reduction_percent": 2.3813434061422334
+  },
+  "prefill_m8192": {
+    "direct_total_gbyte": 2.69,
+    "two_kernel_gemm_gbyte": 3.68,
+    "two_kernel_postop_gbyte": 1.16,
+    "two_kernel_total_gbyte": 4.84,
+    "measured_reduction_gbyte": 2.15,
+    "measured_reduction_percent": 44.421487603305785
+  },
+  "reports": [
+    "profiles/swiglu_traffic_direct_m64.ncu-rep",
+    "profiles/swiglu_traffic_two_kernel_m64.ncu-rep",
+    "profiles/swiglu_traffic_direct_m8192.ncu-rep",
+    "profiles/swiglu_traffic_two_kernel_m8192.ncu-rep"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "issue": "The initial fused timing closure converted CUDA scalar tensors with .item() after the CUDA start event was recorded.",
+  "effect": "The host synchronization delayed the custom kernel launch inside the event interval and inflated fused latency.",
+  "affected_results": {
+    "bench_directory": "excluded from the public release",
+    "results_directory": "excluded from the public release"
+  },
+  "fix": "Convert all scale tensors to Python floats before entering the timed function. The corrected benchmark uses no .item() or host synchronization inside the event interval.",
+  "validation": {
+    "independent_batches": 7,
+    "rounds_per_batch": 20,
+    "all_shapes_won_all_batches": true,
+    "ncu_kernel_duration_us": 60.64
+  },
+  "valid_result_files": [
+    "bench/fused_gate_decode_corrected_repeatability.csv",
+    "bench/fused_gate_decode_corrected_repeatability_batches.csv",
+    "bench/fused_gate_decode_corrected_repeatability_raw.csv",
+    "results/fused_gate_decode_corrected_repeatability.json"
+  ]
+}

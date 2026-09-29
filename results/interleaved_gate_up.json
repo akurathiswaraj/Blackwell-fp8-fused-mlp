@@ -1,0 +1,33 @@
+{
+  "weight_layout": "[gate0, up0, gate1, up1, ...]",
+  "packing_timed": false,
+  "results": [
+    {
+      "M": 4,
+      "blocked_ms": 0.10956799983978271,
+      "interleaved_ms": 0.10950399935245514,
+      "speedup": 1.0005844579897176,
+      "rel_l2": 0.0,
+      "exact_fraction": 1.0,
+      "amax_relative_error": 0.0
+    },
+    {
+      "M": 16,
+      "blocked_ms": 0.10956799983978271,
+      "interleaved_ms": 0.10956799983978271,
+      "speedup": 1.0,
+      "rel_l2": 0.0,
+      "exact_fraction": 1.0,
+      "amax_relative_error": 0.0
+    },
+    {
+      "M": 64,
+      "blocked_ms": 0.14027199894189835,
+      "interleaved_ms": 0.14025600254535675,
+      "speedup": 1.0001140514220517,
+      "rel_l2": 0.0,
+      "exact_fraction": 1.0,
+      "amax_relative_error": 0.0
+    }
+  ]
+}

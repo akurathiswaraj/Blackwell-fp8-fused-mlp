@@ -1,0 +1,75 @@
+{
+  "decode": [
+    {
+      "M": 1,
+      "direct_ms": 0.15670399367809296,
+      "baseline_ms": 0.17313600331544876,
+      "speedup": 1.1048601841706156,
+      "latency_reduction_percent": 9.490810300973141,
+      "batch_speedup_min": 1.0907349880685737,
+      "batch_speedup_max": 1.1174428005113144,
+      "batches_won": 7,
+      "batches": 7,
+      "rounds_per_batch": 20
+    },
+    {
+      "M": 4,
+      "direct_ms": 0.15670399367809296,
+      "baseline_ms": 0.18329599499702454,
+      "speedup": 1.1696957473436054,
+      "latency_reduction_percent": 14.507682679789735,
+      "batch_speedup_min": 1.1631611793849639,
+      "batch_speedup_max": 1.169934601981343,
+      "batches_won": 7,
+      "batches": 7,
+      "rounds_per_batch": 20
+    },
+    {
+      "M": 16,
+      "direct_ms": 0.14032000303268433,
+      "baseline_ms": 0.18534399569034576,
+      "speedup": 1.3208665313894992,
+      "latency_reduction_percent": 24.29212367520285,
+      "batch_speedup_min": 1.3207159705576346,
+      "batch_speedup_max": 1.3209805838893305,
+      "batches_won": 7,
+      "batches": 7,
+      "rounds_per_batch": 20
+    },
+    {
+      "M": 64,
+      "direct_ms": 0.14851200580596924,
+      "baseline_ms": 0.2038400024175644,
+      "speedup": 1.3725489822276127,
+      "latency_reduction_percent": 27.142855158653433,
+      "batch_speedup_min": 1.3723334596234253,
+      "batch_speedup_max": 1.3940346367135021,
+      "batches_won": 7,
+      "batches": 7,
+      "rounds_per_batch": 20
+    }
+  ],
+  "prefill": [
+    {
+      "M": 512,
+      "direct_ms": 0.6153600215911865,
+      "baseline_ms": 0.4864159971475601,
+      "speedup": 0.7904575859344821,
+      "relative_l2": 0.01418364979326725
+    },
+    {
+      "M": 2048,
+      "direct_ms": 2.319375991821289,
+      "baseline_ms": 1.8739519715309143,
+      "speedup": 0.8079552337089573,
+      "relative_l2": 0.01417950727045536
+    },
+    {
+      "M": 8192,
+      "direct_ms": 11.914752006530762,
+      "baseline_ms": 7.585263967514038,
+      "speedup": 0.6366279351308675,
+      "relative_l2": 0.014213740825653076
+    }
+  ]
+}

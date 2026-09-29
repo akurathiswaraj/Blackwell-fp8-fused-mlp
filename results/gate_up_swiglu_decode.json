@@ -1,0 +1,91 @@
+{
+  "implementation": {
+    "gemm": "SM100 CUTLASS FP8 combined gate_up",
+    "cluster": "1x2x1",
+    "gemm_output": "BF16 [M, 2N]",
+    "postop": "single CUDA kernel for SiLU*up + amax + FP8",
+    "fully_single_kernel": false
+  },
+  "correctness": {
+    "M": 4,
+    "dequantized_rel_l2": 0.026432886719703674,
+    "dequantized_max_abs": 0.2617940902709961,
+    "amax_relative_error": 0.00463890403893617,
+    "exact_fp8_fraction": 0.9793875813484192
+  },
+  "methodology": {
+    "warmups": 5,
+    "rounds": 30,
+    "cold_l2": true,
+    "l2_flush_mib": 512,
+    "alternating_order": true,
+    "cuda_events": true,
+    "timed_host_scalar_reads": false
+  },
+  "results": [
+    {
+      "M": 1,
+      "N_intermediate": 28672,
+      "K": 8192,
+      "custom_ms": 0.10342399775981903,
+      "baseline_ms": 0.14028799533843994,
+      "speedup": 1.3564356278726526,
+      "custom_min_ms": 0.10124800354242325,
+      "custom_max_ms": 0.10790400207042694,
+      "baseline_min_ms": 0.13820800185203552,
+      "baseline_max_ms": 0.14716799557209015,
+      "custom_vs_baseline_rel_l2": 0.01117277517914772,
+      "exact_fp8_match_fraction": 0.9814453721046448,
+      "estimated_postop_bytes_avoided": 172032,
+      "estimated_postop_mib_avoided": 0.1640625
+    },
+    {
+      "M": 4,
+      "N_intermediate": 28672,
+      "K": 8192,
+      "custom_ms": 0.10345599800348282,
+      "baseline_ms": 0.15256000310182571,
+      "speedup": 1.4746366189100977,
+      "custom_min_ms": 0.10329599678516388,
+      "custom_max_ms": 0.10553599894046783,
+      "baseline_min_ms": 0.15043200552463531,
+      "baseline_max_ms": 0.15270400047302246,
+      "custom_vs_baseline_rel_l2": 0.01189132034778595,
+      "exact_fp8_match_fraction": 0.9788818955421448,
+      "estimated_postop_bytes_avoided": 688128,
+      "estimated_postop_mib_avoided": 0.65625
+    },
+    {
+      "M": 16,
+      "N_intermediate": 28672,
+      "K": 8192,
+      "custom_ms": 0.10956799983978271,
+      "baseline_ms": 0.15360000729560852,
+      "speedup": 1.4018692275136189,
+      "custom_min_ms": 0.10943999886512756,
+      "custom_max_ms": 0.11369600147008896,
+      "baseline_min_ms": 0.1504960060119629,
+      "baseline_max_ms": 0.166143998503685,
+      "custom_vs_baseline_rel_l2": 0.012249180115759373,
+      "exact_fp8_match_fraction": 0.9779336452484131,
+      "estimated_postop_bytes_avoided": 2752512,
+      "estimated_postop_mib_avoided": 2.625
+    },
+    {
+      "M": 64,
+      "N_intermediate": 28672,
+      "K": 8192,
+      "custom_ms": 0.14022400230169296,
+      "baseline_ms": 0.16281600296497345,
+      "speedup": 1.1611136488222153,
+      "custom_min_ms": 0.13820800185203552,
+      "custom_max_ms": 0.14044800400733948,
+      "baseline_min_ms": 0.16064000129699707,
+      "baseline_max_ms": 0.16499200463294983,
+      "custom_vs_baseline_rel_l2": 0.013646201230585575,
+      "exact_fp8_match_fraction": 0.9751238822937012,
+      "estimated_postop_bytes_avoided": 11010048,
+      "estimated_postop_mib_avoided": 10.5
+    }
+  ]
+}

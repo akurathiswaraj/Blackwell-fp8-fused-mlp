@@ -1,0 +1,264 @@
+[894] python3.12@127.0.0.1
+  void device_kernel<gemm::GemmUniversal<cute::tuple<int, int, int, int>, gemm::CollectiveMma<gemm::MainloopSm100TmaUmmaWarpSpecialized<8, 1, 4, cute::tuple<cute::C<1>, cute::C<2>, cute::C<1>>>, cute::tuple<cute::C<64>, cute::C<128>, cute::C<128>>, float_e4m3_t, cute::tuple<long, cute::C<1>, long>, float_e4m3_t, cute::tuple<long, cute::C<1>, long>, cute::TiledMMA<cute::MMA_Atom<cute::MMA_Traits<cute::SM100_MMA_F8F6F4_SS, float_e4m3_t, float_e4m3_t, float, cute::C<64>, cute::C<128>, cute::integral_constant<cute::Major, 0>, cute::integral_constant<cute::Major, 0>, cute::integral_constant<cute::ScaleIn, 0>, cute::integral_constant<cute::ScaleIn, 0>>>, cute::Layout<cute::tuple<cute::C<1>, cute::C<1>, cute::C<1>>, cute::tuple<cute::C<0>, cute::C<0>, cute::C<0>>>, cute::tuple<cute::Underscore, cute::Underscore, cute::Underscore>>, cute::SM90_TMA_LOAD_MULTICAST, cute::ComposedLayout<cute::Swizzle<3, 4, 3>, cute::smem_ptr_flag_bits<8>, cute::Layout<cute::tuple<cute::C<8>, cute::C<128>>, cute::tuple<cute::C<128>, cute::C<1>>>>, void, cute::identity, cute::SM90_TMA_LOAD, cute::ComposedLayout<cute::Swizzle<3, 4, 3>, cute::smem_ptr_flag_bits<8>, cute::Layout<cute::tuple<cute::C<8>, cute::C<128>>, cute::tuple<cute::C<128>, cute::C<1>>>>, void, cute::identity>, epilogue::CollectiveEpilogue<epilogue::Sm100TmaWarpSpecialized<4, 2, 16, 1, 0>, cute::tuple<cute::C<64>, cute::C<128>, cute::C<128>>, cute::tuple<cute::Layout<cute::C<64>, cute::C<1>>, cute::Layout<cute::C<32>, cute::C<1>>>, bfloat16_t, cute::tuple<long, cute::C<1>, long>, bfloat16_t, cute::tuple<long, cute::C<1>, long>, epilogue::FusionCallbacks<epilogue::Sm100TmaWarpSpecialized<4, 2, 16, 1, 0>, epilogue::LinearCombination<bfloat16_t, float, bfloat16_t, float, 2>, cute::tuple<cute::C<64>, cute::C<128>, cute::C<128>>, cute::tuple<cute::Layout<cute::C<64>, cute::C<1>>, cute::Layout<cute::C<32>, cute::C<1>>>, >, cute::SM100_TMEM_LOAD_16dp256b4x, cute::SM90_TMA_LOAD, cute::ComposedLayout<cute::Swizzle<2, 4, 3>, cute::smem_ptr_flag_bits<16>, cute::Layout<cute::tuple<cute::C<8>, cute::C<32>>, cute::tuple<cute::C<32>, cute::C<1>>>>, cute::SM75_U32x4_LDSM_N, cute::SM90_TMA_STORE, cute::ComposedLayout<cute::Swizzle<2, 4, 3>, cute::smem_ptr_flag_bits<16>, cute::Layout<cute::tuple<cute::C<8>, cute::C<32>>, cute::tuple<cute::C<32>, cute::C<1>>>>, cute::SM90_U32x4_STSM_N, cute::AutoVectorizingCopyWithAssumedAlignment<128>>, void, void>>(T1::Params) (128, 448, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 10.0
+    Warning: The result was collected with the Work ID feature enabled.                                                
+    This could lower the count of clusters, blocks, warps and threads launched on the device.                          
+    Metrics that depend on such counts would be affected accordingly. There may be improvements in the future to       
+    address this.                                                                                                      
+
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ----------- ------------
+    Metric Name             Metric Unit Metric Value
+    ----------------------- ----------- ------------
+    DRAM Frequency                  Ghz         4.00
+    SM Frequency                    Ghz         1.10
+    Elapsed Cycles                cycle      6655407
+    Memory Throughput                 %        83.58
+    DRAM Throughput                   %         9.36
+    Duration                         ms         5.94
+    L1/TEX Cache Throughput           %        72.68
+    L2 Cache Throughput               %        83.63
+    SM Active Cycles              cycle   6550953.21
+    Compute (SM) Throughput           %        97.67
+    ----------------------- ----------- ------------
+
+    INF   This workload is utilizing greater than 80.0% of the available compute or memory performance of the device.   
+          To further improve performance, work will likely need to be shifted from the most utilized to another unit.   
+          Start by analyzing workloads in the Compute Workload Analysis section.                                        
+
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   256
+    Cluster Scheduling Policy                           PolicySpread
+    Cluster Size                                                   2
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                  57344
+    Registers Per Thread             register/thread              71
+    Shared Memory Configuration Size           Kbyte          233.47
+    Driver Shared Memory Per Block       Kbyte/block            1.02
+    Dynamic Shared Memory Per Block      Kbyte/block          214.02
+    Static Shared Memory Per Block        byte/block               0
+    # SMs                                         SM             148
+    Stack Size                                                  1024
+    Threads                                   thread        14680064
+    # TPCs                                                        74
+    Enabled TPC IDs                                              all
+    Uses Green Context                                             0
+    Waves Per SM                                              387.46
+    -------------------------------- --------------- ---------------
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Max Active Clusters                 cluster           74
+    Max Cluster Size                      block           16
+    Overall GPU Occupancy                     %         0.39
+    Cluster Occupancy                         %         3.12
+    Block Limit Barriers                  block            9
+    Block Limit SM                        block           32
+    Block Limit Registers                 block            3
+    Block Limit Shared Mem                block            1
+    Block Limit Warps                     block            8
+    Theoretical Active Warps per SM        warp            8
+    Theoretical Occupancy                     %        12.50
+    Achieved Occupancy                        %        10.17
+    Achieved Active Warps Per SM           warp         6.51
+    ------------------------------- ----------- ------------
+
+    OPT   Est. Local Speedup: 87.5%                                                                                     
+          The 2.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 16. This kernel's theoretical occupancy (12.5%) is limited by the required amount of      
+          shared memory.                                                                                                
+
+    Section: GPU and Memory Workload Distribution
+    -------------------------- ----------- ------------
+    Metric Name                Metric Unit Metric Value
+    -------------------------- ----------- ------------
+    Average DRAM Active Cycles       cycle   1806712.88
+    Total DRAM Elapsed Cycles        cycle   1519185920
+    Average L1 Active Cycles         cycle   6550953.21
+    Total L1 Elapsed Cycles          cycle    971653412
+    Average L2 Active Cycles         cycle   6857613.65
+    Total L2 Elapsed Cycles          cycle   1262426116
+    Average SM Active Cycles         cycle   6550953.21
+    Total SM Elapsed Cycles          cycle    971653412
+    Average SMSP Active Cycles       cycle   6560936.61
+    Total SMSP Elapsed Cycles        cycle   3886613648
+    -------------------------- ----------- ------------
+
+  swiglu_amax_quantize_kernel(const bfloat16_t *, float_e4m3_t *, long, long, float, float *) (917504, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 10.0
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ----------- ------------
+    Metric Name             Metric Unit Metric Value
+    ----------------------- ----------- ------------
+    DRAM Frequency                  Ghz         4.00
+    SM Frequency                    Ghz         1.14
+    Elapsed Cycles                cycle     10119087
+    Memory Throughput                 %         2.95
+    DRAM Throughput                   %         2.00
+    Duration                         ms         8.76
+    L1/TEX Cache Throughput           %         2.95
+    L2 Cache Throughput               %         1.92
+    SM Active Cycles              cycle  10222455.59
+    Compute (SM) Throughput           %        12.34
+    ----------------------- ----------- ------------
+
+    OPT   This workload exhibits low compute throughput and memory bandwidth utilization relative to the peak           
+          performance of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak           
+          typically indicate latency issues. Look at Scheduler Statistics and Warp State Statistics for potential       
+          reasons.                                                                                                      
+
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   256
+    Cluster Scheduling Policy                           PolicySpread
+    Cluster Size                                                   0
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                 917504
+    Registers Per Thread             register/thread              18
+    Shared Memory Configuration Size           Kbyte           32.77
+    Driver Shared Memory Per Block       Kbyte/block            1.02
+    Dynamic Shared Memory Per Block       byte/block               0
+    Static Shared Memory Per Block        byte/block               0
+    # SMs                                         SM             148
+    Stack Size                                                  1024
+    Threads                                   thread       234881024
+    # TPCs                                                        74
+    Enabled TPC IDs                                              all
+    Uses Green Context                                             0
+    Waves Per SM                                              774.92
+    -------------------------------- --------------- ---------------
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Max Active Clusters                 cluster            0
+    Max Cluster Size                      block            8
+    Overall GPU Occupancy                     %            0
+    Cluster Occupancy                         %            0
+    Block Limit Barriers                  block           32
+    Block Limit SM                        block           32
+    Block Limit Registers                 block           10
+    Block Limit Shared Mem                block           32
+    Block Limit Warps                     block            8
+    Theoretical Active Warps per SM        warp           64
+    Theoretical Occupancy                     %          100
+    Achieved Occupancy                        %        95.18
+    Achieved Active Warps Per SM           warp        60.91
+    ------------------------------- ----------- ------------
+
+    Section: GPU and Memory Workload Distribution
+    -------------------------- ----------- ------------
+    Metric Name                Metric Unit Metric Value
+    -------------------------- ----------- ------------
+    Average DRAM Active Cycles       cycle       567874
+    Total DRAM Elapsed Cycles        cycle   2240746496
+    Average L1 Active Cycles         cycle  10222455.59
+    Total L1 Elapsed Cycles          cycle   1516749598
+    Average L2 Active Cycles         cycle   8760455.59
+    Total L2 Elapsed Cycles          cycle   1862027836
+    Average SM Active Cycles         cycle  10222455.59
+    Total SM Elapsed Cycles          cycle   1516749598
+    Average SMSP Active Cycles       cycle  10214590.05
+    Total SMSP Elapsed Cycles        cycle   6066998392
+    -------------------------- ----------- ------------
+
+    OPT   Est. Speedup: 13.2%                                                                                           
+          One or more L2 Slices have a much lower number of active cycles than the average number of active cycles.     
+          Maximum instance value is 15.25% above the average, while the minimum instance value is 28.25% below the      
+          average.                                                                                                      
+
+  void device_kernel<gemm::GemmUniversal<cute::tuple<int, int, int, int>, gemm::CollectiveMma<gemm::MainloopSm100TmaUmmaWarpSpecialized<13, 1, 4, cute::tuple<cute::C<1>, cute::C<1>, cute::C<1>>>, cute::tuple<cute::C<64>, cute::C<64>, cute::C<128>>, float_e4m3_t, cute::tuple<long, cute::C<1>, long>, float_e4m3_t, cute::tuple<long, cute::C<1>, long>, cute::TiledMMA<cute::MMA_Atom<cute::MMA_Traits<cute::SM100_MMA_F8F6F4_SS, float_e4m3_t, float_e4m3_t, float, cute::C<64>, cute::C<64>, cute::integral_constant<cute::Major, 0>, cute::integral_constant<cute::Major, 0>, cute::integral_constant<cute::ScaleIn, 0>, cute::integral_constant<cute::ScaleIn, 0>>>, cute::Layout<cute::tuple<cute::C<1>, cute::C<1>, cute::C<1>>, cute::tuple<cute::C<0>, cute::C<0>, cute::C<0>>>, cute::tuple<cute::Underscore, cute::Underscore, cute::Underscore>>, cute::SM90_TMA_LOAD, cute::ComposedLayout<cute::Swizzle<3, 4, 3>, cute::smem_ptr_flag_bits<8>, cute::Layout<cute::tuple<cute::C<8>, cute::C<128>>, cute::tuple<cute::C<128>, cute::C<1>>>>, void, cute::identity, cute::SM90_TMA_LOAD, cute::ComposedLayout<cute::Swizzle<3, 4, 3>, cute::smem_ptr_flag_bits<8>, cute::Layout<cute::tuple<cute::C<8>, cute::C<128>>, cute::tuple<cute::C<128>, cute::C<1>>>>, void, cute::identity>, epilogue::CollectiveEpilogue<epilogue::Sm100TmaWarpSpecialized<3, 2, 16, 1, 0>, cute::tuple<cute::C<64>, cute::C<64>, cute::C<128>>, cute::tuple<cute::Layout<cute::C<64>, cute::C<1>>, cute::Layout<cute::C<32>, cute::C<1>>>, bfloat16_t, cute::tuple<long, cute::C<1>, long>, bfloat16_t, cute::tuple<long, cute::C<1>, long>, epilogue::FusionCallbacks<epilogue::Sm100TmaWarpSpecialized<3, 2, 16, 1, 0>, epilogue::LinearCombination<bfloat16_t, float, bfloat16_t, float, 2>, cute::tuple<cute::C<64>, cute::C<64>, cute::C<128>>, cute::tuple<cute::Layout<cute::C<64>, cute::C<1>>, cute::Layout<cute::C<32>, cute::C<1>>>, >, cute::SM100_TMEM_LOAD_16dp256b4x, cute::SM90_TMA_LOAD, cute::ComposedLayout<cute::Swizzle<2, 4, 3>, cute::smem_ptr_flag_bits<16>, cute::Layout<cute::tuple<cute::C<8>, cute::C<32>>, cute::tuple<cute::C<32>, cute::C<1>>>>, cute::SM75_U32x4_LDSM_N, cute::SM90_TMA_STORE, cute::ComposedLayout<cute::Swizzle<2, 4, 3>, cute::smem_ptr_flag_bits<16>, cute::Layout<cute::tuple<cute::C<8>, cute::C<32>>, cute::tuple<cute::C<32>, cute::C<1>>>>, cute::SM90_U32x4_STSM_N, cute::AutoVectorizingCopyWithAssumedAlignment<128>>, void, void>>(T1::Params) (128, 128, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 10.0
+    Warning: The result was collected with the Work ID feature enabled.                                                
+    This could lower the count of clusters, blocks, warps and threads launched on the device.                          
+    Metrics that depend on such counts would be affected accordingly. There may be improvements in the future to       
+    address this.                                                                                                      
+
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ----------- ------------
+    Metric Name             Metric Unit Metric Value
+    ----------------------- ----------- ------------
+    DRAM Frequency                  Ghz         4.00
+    SM Frequency                    Ghz         1.12
+    Elapsed Cycles                cycle      5996395
+    Memory Throughput                 %        85.44
+    DRAM Throughput                   %        85.44
+    Duration                         ms         5.30
+    L1/TEX Cache Throughput           %        54.33
+    L2 Cache Throughput               %        83.09
+    SM Active Cycles              cycle   5894136.19
+    Compute (SM) Throughput           %        61.71
+    ----------------------- ----------- ------------
+
+    INF   This workload is utilizing greater than 80.0% of the available compute or memory performance of the device.   
+          To further improve performance, work will likely need to be shifted from the most utilized to another unit.   
+          Start by analyzing DRAM in the Memory Workload Analysis section.                                              
+
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   256
+    Cluster Scheduling Policy                           PolicySpread
+    Cluster Size                                                   0
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                  16384
+    Registers Per Thread             register/thread              79
+    Shared Memory Configuration Size           Kbyte          233.47
+    Driver Shared Memory Per Block       Kbyte/block            1.02
+    Dynamic Shared Memory Per Block      Kbyte/block          226.30
+    Static Shared Memory Per Block        byte/block               0
+    # SMs                                         SM             148
+    Stack Size                                                  1024
+    Threads                                   thread         4194304
+    # TPCs                                                        74
+    Enabled TPC IDs                                              all
+    Uses Green Context                                             0
+    Waves Per SM                                              110.70
+    -------------------------------- --------------- ---------------
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Max Active Clusters                 cluster            0
+    Max Cluster Size                      block            8
+    Overall GPU Occupancy                     %            0
+    Cluster Occupancy                         %            0
+    Block Limit Barriers                  block            9
+    Block Limit SM                        block           32
+    Block Limit Registers                 block            3
+    Block Limit Shared Mem                block            1
+    Block Limit Warps                     block            8
+    Theoretical Active Warps per SM        warp            8
+    Theoretical Occupancy                     %        12.50
+    Achieved Occupancy                        %        10.95
+    Achieved Active Warps Per SM           warp         7.01
+    ------------------------------- ----------- ------------
+
+    OPT   Est. Local Speedup: 87.5%                                                                                     
+          The 2.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 16. This kernel's theoretical occupancy (12.5%) is limited by the required amount of      
+          shared memory.                                                                                                
+
+    Section: GPU and Memory Workload Distribution
+    -------------------------- ----------- ------------
+    Metric Name                Metric Unit Metric Value
+    -------------------------- ----------- ------------
+    Average DRAM Active Cycles       cycle  14709162.38
+    Total DRAM Elapsed Cycles        cycle   1355330304
+    Average L1 Active Cycles         cycle   5894136.19
+    Total L1 Elapsed Cycles          cycle    876658386
+    Average L2 Active Cycles         cycle   6102130.25
+    Total L2 Elapsed Cycles          cycle   1126256732
+    Average SM Active Cycles         cycle   5894136.19
+    Total SM Elapsed Cycles          cycle    876658386
+    Average SMSP Active Cycles       cycle   5901870.06
+    Total SMSP Elapsed Cycles        cycle   3506633544
+    -------------------------- ----------- ------------
+

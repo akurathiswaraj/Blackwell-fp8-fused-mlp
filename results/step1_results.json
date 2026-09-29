@@ -1,0 +1,33 @@
+{
+  "hardware": {
+    "gpu": "NVIDIA B200",
+    "compute_capability": "10.0",
+    "gpu_memory_gib": 178.4
+  },
+  "software": {
+    "driver": "580.95.05",
+    "nvcc": "12.8.93",
+    "pytorch": "2.8.0+cu129",
+    "cutlass": "3.9.2",
+    "cutlass_commit": "ad7b2f5e84fcfa124cb02b91d5bd26d238c0459e"
+  },
+  "qkv_m1": {
+    "shape": [
+      1,
+      10240,
+      8192
+    ],
+    "cublaslt_warm_ms": 0.0256,
+    "cublaslt_cold_ms": 0.029696,
+    "cutlass_2sm_warm_ms": 0.061688,
+    "cutlass_1sm_128x64_warm_ms": 0.0400118,
+    "cutlass_1sm_64x64_warm_ms": 0.0258483,
+    "cutlass_1sm_64x64_cold_ms": 0.033824
+  },
+  "notes": [
+    "CUTLASS and cuBLASLt warm results are effectively tied.",
+    "CUTLASS is 13.9 percent slower under cold-L2 testing.",
+    "Do not use these preliminary results as resume claims.",
+    "A shared invocation harness is still required."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "qkv_like_m4": {
+    "M": 4,
+    "N": 10240,
+    "K": 8192,
+    "dequantized_rel_l2": 0.02626977488398552,
+    "amax_relative_error": 9.358610003090681e-07,
+    "exact_fp8_match_fraction": 0.999951183795929,
+    "bias_axis_check_wrong_no_bias_rel_l2": 0.6666292548179626
+  },
+  "gate_m16": {
+    "M": 16,
+    "N": 28672,
+    "K": 8192,
+    "fused_rel_l2_vs_fp32": 0.026179218664765358,
+    "unfused_rel_l2_vs_fp32": 0.026400404050946236,
+    "n64_vs_n128_fp8_rel_l2": 0.0,
+    "kernel_amax": 4.630204677581787,
+    "reference_amax": 4.630209922790527
+  }
+}

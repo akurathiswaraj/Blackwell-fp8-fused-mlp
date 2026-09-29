@@ -1,0 +1,55 @@
+{
+  "gpu": "NVIDIA B200",
+  "cache_mode": "cold_l2",
+  "l2_flush_bytes": 536870912,
+  "results": [
+    {
+      "layer": "qkv",
+      "M": 1,
+      "N": 10240,
+      "K": 8192,
+      "tile": "64x128x128",
+      "batches": 7,
+      "rounds_per_batch": 30,
+      "pooled_custom_median_ms": 0.0297279991209507,
+      "pooled_cublaslt_median_ms": 0.03174399957060814,
+      "pooled_speedup": 1.0678148718134437,
+      "median_batch_speedup": 1.0678148718134437,
+      "min_batch_speedup": 1.0678148718134437,
+      "max_batch_speedup": 1.0689654761464948,
+      "batches_won": 7
+    },
+    {
+      "layer": "gate_up",
+      "M": 16,
+      "N": 57344,
+      "K": 8192,
+      "tile": "64x64x128",
+      "batches": 7,
+      "rounds_per_batch": 30,
+      "pooled_custom_median_ms": 0.0952640026807785,
+      "pooled_cublaslt_median_ms": 0.09728000313043594,
+      "pooled_speedup": 1.0211622479942701,
+      "median_batch_speedup": 1.0213302035848566,
+      "min_batch_speedup": 1.0211622479942701,
+      "max_batch_speedup": 1.0215053830740732,
+      "batches_won": 7
+    },
+    {
+      "layer": "gate_up",
+      "M": 64,
+      "N": 57344,
+      "K": 8192,
+      "tile": "64x64x128",
+      "batches": 7,
+      "rounds_per_batch": 30,
+      "pooled_custom_median_ms": 0.09532800316810608,
+      "pooled_cublaslt_median_ms": 0.09728000313043594,
+      "pooled_speedup": 1.0204766689478182,
+      "median_batch_speedup": 1.020647977392798,
+      "min_batch_speedup": 1.0,
+      "max_batch_speedup": 1.0211622479942701,
+      "batches_won": 6
+    }
+  ]
+}

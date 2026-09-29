@@ -1,0 +1,67 @@
+{
+  "gpu": "NVIDIA B200",
+  "timing_correction": "All CUDA scalar .item() calls are outside the timed interval.",
+  "cache_mode": "cold_l2",
+  "l2_flush_bytes": 536870912,
+  "amax_mode": "external_running_max",
+  "batches": 7,
+  "rounds_per_batch": 20,
+  "results": [
+    {
+      "layer": "gate",
+      "M": 1,
+      "N": 28672,
+      "K": 8192,
+      "tile": "64x64x128",
+      "fused_pooled_median_ms": 0.07475200295448303,
+      "unfused_pooled_median_ms": 0.09932799637317657,
+      "pooled_speedup": 1.3287670222516716,
+      "min_batch_speedup": 1.3108107058435672,
+      "max_batch_speedup": 1.329195107686162,
+      "batches_won": 7,
+      "batches": 7
+    },
+    {
+      "layer": "gate",
+      "M": 4,
+      "N": 28672,
+      "K": 8192,
+      "tile": "64x64x128",
+      "fused_pooled_median_ms": 0.07884799689054489,
+      "unfused_pooled_median_ms": 0.11161600053310394,
+      "pooled_speedup": 1.4155844781706617,
+      "min_batch_speedup": 1.4152972809073716,
+      "max_batch_speedup": 1.4157874018017351,
+      "batches_won": 7,
+      "batches": 7
+    },
+    {
+      "layer": "gate",
+      "M": 16,
+      "N": 28672,
+      "K": 8192,
+      "tile": "64x64x128",
+      "fused_pooled_median_ms": 0.062463998794555664,
+      "unfused_pooled_median_ms": 0.10342399775981903,
+      "pooled_speedup": 1.655737701007279,
+      "min_batch_speedup": 1.655737701007279,
+      "max_batch_speedup": 1.6583739087556475,
+      "batches_won": 7,
+      "batches": 7
+    },
+    {
+      "layer": "gate",
+      "M": 64,
+      "N": 28672,
+      "K": 8192,
+      "tile": "64x64x128",
+      "fused_pooled_median_ms": 0.062463998794555664,
+      "unfused_pooled_median_ms": 0.11161600053310394,
+      "pooled_speedup": 1.786885288919933,
+      "min_batch_speedup": 1.7859155285640276,
+      "max_batch_speedup": 1.786885288919933,
+      "batches_won": 7,
+      "batches": 7
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "qkv_m1_scheduler_comparison": {
+    "shape": [
+      1,
+      10240,
+      8192
+    ],
+    "data_parallel_ms": 0.02976,
+    "heuristic_ms": 0.031776,
+    "split_k_2_ms": 0.03488,
+    "stream_k_ms": 0.034864,
+    "cublaslt_baseline_ms": 0.0317,
+    "conclusion": "Data-parallel is fastest. Stream-K and Split-K reduction/reset overhead exceeds the benefit of additional K parallelism."
+  },
+  "decode_summary": {
+    "wins": 6,
+    "shapes": 20,
+    "geometric_mean_vs_cublaslt": 0.953,
+    "important_results": {
+      "qkv_m1": 1.065,
+      "gate_up_m16": 1.043,
+      "gate_up_m64": 1.043,
+      "down_m16": 1.072,
+      "down_m64": 1.072
+    },
+    "warning": "Results use equivalent cold-L2 policies but separate executable and PyTorch harnesses."
+  },
+  "qkv_m1_nsight": {
+    "grid_blocks": 80,
+    "gpu_sms": 148,
+    "waves_per_sm": 0.54,
+    "compute_throughput_percent": 21.03,
+    "dram_throughput_percent": 31.79,
+    "measured_memory_tbps": 2.11,
+    "l1_hit_rate_percent": 0.0,
+    "l2_hit_rate_percent": 8.04,
+    "dynamic_shared_memory_kib": 221.7,
+    "achieved_occupancy_percent": 10.75,
+    "active_warps_per_scheduler": 1.73,
+    "eligible_warps_per_scheduler": 0.07,
+    "warp_cycles_per_issued_instruction": 26.55,
+    "scoreboard_stall_cycles": 21.0,
+    "scoreboard_stall_fraction_percent": 79.3,
+    "interpretation": "Grid underfill and scoreboard dependencies limit the kernel. Stream-K increases parallelism but is slower because reduction/reset overhead dominates at this problem size."
+  }
+}

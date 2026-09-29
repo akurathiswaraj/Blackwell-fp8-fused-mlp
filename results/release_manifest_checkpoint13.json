@@ -1,0 +1,88 @@
+{
+  "release": "checkpoint13_direct_epilogue_final",
+  "hardware": "NVIDIA B200 (SM100)",
+  "cuda_toolkit": "12.8.93",
+  "cutlass_version": "3.9.2",
+  "cutlass_commit": "ad7b2f5e84fcfa124cb02b91d5bd26d238c0459e",
+  "model_shape": {
+    "hidden_size": 8192,
+    "intermediate_size": 28672,
+    "architecture": "Llama 3.1 70B MLP"
+  },
+  "supported_dispatch": {
+    "decode_m": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "decode_backend": "custom SM100 direct epilogue",
+    "prefill_m": [
+      512,
+      2048,
+      8192
+    ],
+    "prefill_backend": "cuBLASLt fallback"
+  },
+  "decode_results": {
+    "1": {
+      "speedup": 1.105,
+      "latency_reduction_percent": 9.5,
+      "batches_won": "7/7"
+    },
+    "4": {
+      "speedup": 1.17,
+      "latency_reduction_percent": 14.5,
+      "batches_won": "7/7"
+    },
+    "16": {
+      "speedup": 1.321,
+      "latency_reduction_percent": 24.3,
+      "batches_won": "7/7"
+    },
+    "64": {
+      "speedup": 1.373,
+      "latency_reduction_percent": 27.1,
+      "batches_won": "7/7"
+    }
+  },
+  "prefill_results": {
+    "512": {
+      "custom_vs_baseline": 0.79
+    },
+    "2048": {
+      "custom_vs_baseline": 0.808
+    },
+    "8192": {
+      "custom_vs_baseline": 0.637
+    }
+  },
+  "exact_intermediate_traffic_eliminated_mib": {
+    "1": 0.219,
+    "4": 0.875,
+    "16": 3.5,
+    "64": 14.0,
+    "512": 112.0,
+    "2048": 448.0,
+    "8192": 1792.0
+  },
+  "measured_physical_dram": {
+    "m64": {
+      "direct_mb": 475.52,
+      "two_kernel_mb": 487.12,
+      "reduction_percent": 2.38
+    },
+    "m8192": {
+      "direct_gb": 2.69,
+      "two_kernel_gb": 4.84,
+      "reduction_percent": 44.4
+    }
+  },
+  "claim_boundaries": [
+    "Decode results use the custom kernel.",
+    "Prefill results lose to cuBLASLt and use fallback dispatch.",
+    "Physical DRAM measurements are Nsight Compute measurements.",
+    "Logical intermediate traffic is calculated from tensor sizes.",
+    "The supported kernel does not modify CUTLASS source files."
+  ]
+}

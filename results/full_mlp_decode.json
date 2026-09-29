@@ -1,0 +1,66 @@
+{
+  "implementation": {
+    "gate_up": "SM100 FP8 combined GEMM, cluster 1x2x1",
+    "postop": "fused SiLU*up + running amax + FP8",
+    "down": "SM100 FP8 GEMM, tile 64x64x128",
+    "single_kernel_gate_up": false
+  },
+  "correctness": {
+    "custom_vs_reference_rel_l2": 0.01298851054161787,
+    "baseline_vs_reference_rel_l2": 0.01638677716255188,
+    "custom_vs_baseline_rel_l2": 0.013667206279933453
+  },
+  "methodology": {
+    "cold_l2": true,
+    "l2_flush_mib": 512,
+    "rounds": 30,
+    "alternating_order": true,
+    "cuda_events": true
+  },
+  "results": [
+    {
+      "M": 1,
+      "custom_ms": 0.1607999950647354,
+      "baseline_ms": 0.18534399569034576,
+      "speedup": 1.1526368244957306,
+      "custom_vs_baseline_rel_l2": 0.01244871411472559,
+      "custom_min_ms": 0.158720001578331,
+      "custom_max_ms": 0.16185599565505981,
+      "baseline_min_ms": 0.18329599499702454,
+      "baseline_max_ms": 0.187391996383667
+    },
+    {
+      "M": 4,
+      "custom_ms": 0.16486400365829468,
+      "baseline_ms": 0.19148799777030945,
+      "speedup": 1.1614906439321768,
+      "custom_vs_baseline_rel_l2": 0.013864049687981606,
+      "custom_min_ms": 0.16278399527072906,
+      "custom_max_ms": 0.1669439971446991,
+      "baseline_min_ms": 0.18937599658966064,
+      "baseline_max_ms": 0.1955839991569519
+    },
+    {
+      "M": 16,
+      "custom_ms": 0.1515680029988289,
+      "baseline_ms": 0.19353599846363068,
+      "speedup": 1.2768921845933805,
+      "custom_vs_baseline_rel_l2": 0.01248606201261282,
+      "custom_min_ms": 0.15039999783039093,
+      "custom_max_ms": 0.15462400019168854,
+      "baseline_min_ms": 0.18943999707698822,
+      "baseline_max_ms": 0.19843199849128723
+    },
+    {
+      "M": 64,
+      "custom_ms": 0.1812800019979477,
+      "baseline_ms": 0.20585599541664124,
+      "speedup": 1.1355692472850467,
+      "custom_vs_baseline_rel_l2": 0.013345965184271336,
+      "custom_min_ms": 0.17919999361038208,
+      "custom_max_ms": 0.18332800269126892,
+      "baseline_min_ms": 0.20563200116157532,
+      "baseline_max_ms": 0.2096959948539734
+    }
+  ]
+}

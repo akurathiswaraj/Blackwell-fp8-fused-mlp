@@ -1,0 +1,16 @@
+{
+  "saved_at_utc": "2026-09-28T18:37:31.372337+00:00",
+  "cutlass_version": "3.9.2",
+  "cutlass_commit": "ad7b2f5e84fcfa124cb02b91d5bd26d238c0459e",
+  "hardware": "NVIDIA B200 SM100",
+  "cuda_toolkit": "12.8.93",
+  "pytorch": "2.8.0+cu129",
+  "last_completed_step": 107,
+  "next_step": "Compile integration/sm100_fp8_gemm_torch_cluster_n2.cu as a new PyTorch extension and run qkv correctness.",
+  "new_kernel": {
+    "file": "integration/sm100_fp8_gemm_torch_cluster_n2.cu",
+    "tile": "64x128x128",
+    "cluster": "1x2x1",
+    "purpose": "TMA multicast operand A across two CTAs along the N dimension."
+  }
+}

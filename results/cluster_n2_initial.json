@@ -1,0 +1,52 @@
+{
+  "methodology": {
+    "paired": true,
+    "alternating_order": true,
+    "cold_l2": true,
+    "l2_flush_mib": 512,
+    "timing": "CUDA events",
+    "timed_host_scalar_reads": false
+  },
+  "results": [
+    {
+      "shape": "qkv_m1",
+      "M": 1,
+      "N": 10240,
+      "K": 8192,
+      "tile": "64x128x128",
+      "baseline_cluster": "1x1x1",
+      "multicast_cluster": "1x2x1",
+      "rounds": 50,
+      "l2_flush_mib": 512,
+      "baseline_median_ms": 0.0297279991209507,
+      "cluster_n2_median_ms": 0.02969600073993206,
+      "cluster_n2_speedup": 1.0010775316615483,
+      "baseline_min_ms": 0.02924799919128418,
+      "baseline_max_ms": 0.04303999990224838,
+      "cluster_n2_min_ms": 0.027648000046610832,
+      "cluster_n2_max_ms": 0.03686400130391121,
+      "cluster_vs_baseline_max_abs": 0.0,
+      "cluster_vs_baseline_rel_l2": 0.0
+    },
+    {
+      "shape": "gate_up_m16",
+      "M": 16,
+      "N": 57344,
+      "K": 8192,
+      "tile": "64x128x128",
+      "baseline_cluster": "1x1x1",
+      "multicast_cluster": "1x2x1",
+      "rounds": 50,
+      "l2_flush_mib": 512,
+      "baseline_median_ms": 0.09728000313043594,
+      "cluster_n2_median_ms": 0.09728000313043594,
+      "cluster_n2_speedup": 1.0,
+      "baseline_min_ms": 0.09523200243711472,
+      "baseline_max_ms": 0.09833600372076035,
+      "cluster_n2_min_ms": 0.09510400146245956,
+      "cluster_n2_max_ms": 0.09932799637317657,
+      "cluster_vs_baseline_max_abs": 0.0,
+      "cluster_vs_baseline_rel_l2": 0.0
+    }
+  ]
+}

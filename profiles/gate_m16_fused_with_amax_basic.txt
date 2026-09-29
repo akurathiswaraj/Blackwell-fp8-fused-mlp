@@ -1,0 +1,84 @@
+[2514] python3.12@127.0.0.1
+  void device_kernel<GemmUniversal<tuple<int, int, int, int>, CollectiveMma<MainloopSm100TmaUmmaWarpSpecialized<13, 1, 4, tuple<C<1>, C<1>, C<1>>>, tuple<C<64>, C<64>, C<128>>, float_e4m3_t, tuple<long, C<1>, long>, float_e4m3_t, tuple<long, C<1>, long>, TiledMMA<MMA_Atom<MMA_Traits<SM100_MMA_F8F6F4_SS, float_e4m3_t, float_e4m3_t, float, C<64>, C<64>, integral_constant<Major, 0>, integral_constant<Major, 0>, integral_constant<ScaleIn, 0>, integral_constant<ScaleIn, 0>>>, Layout<tuple<C<1>, C<1>, C<1>>, tuple<C<0>, C<0>, C<0>>>, tuple<Underscore, Underscore, Underscore>>, SM90_TMA_LOAD, ComposedLayout<Swizzle<3, 4, 3>, smem_ptr_flag_bits<8>, Layout<tuple<C<8>, C<128>>, tuple<C<128>, C<1>>>>, void, identity, SM90_TMA_LOAD, ComposedLayout<Swizzle<3, 4, 3>, smem_ptr_flag_bits<8>, Layout<tuple<C<8>, C<128>>, tuple<C<128>, C<1>>>>, void, identity>, CollectiveEpilogue<Sm100TmaWarpSpecialized<1, 1, 32, 0, 0>, tuple<C<64>, C<64>, C<128>>, tuple<Layout<C<64>, C<1>>, Layout<C<64>, C<1>>>, float_e4m3_t, tuple<long, C<1>, long>, float_e4m3_t, tuple<long, C<1>, long>, FusionCallbacks<Sm100TmaWarpSpecialized<1, 1, 32, 0, 0>, ScaledLinCombPerColBiasEltActAmaxAux<RowMajor, SiLu, float_e4m3_t, float, float_e4m3_t, float, bfloat16_t, float_e4m3_t, float, 16, 8, 2>, tuple<C<64>, C<64>, C<128>>, tuple<Layout<C<64>, C<1>>, Layout<C<64>, C<1>>>, ComposedLayout<Swizzle<2, 4, 3>, smem_ptr_flag_bits<8>, Layout<tuple<C<8>, C<64>>, tuple<C<64>, C<1>>>>, AutoVectorizingCopyWithAssumedAlignment<128>>, SM100_TMEM_LOAD_16dp32b32x, SM90_TMA_LOAD, ComposedLayout<Swizzle<2, 4, 3>, smem_ptr_flag_bits<8>, Layout<tuple<C<8>, C<64>>, tuple<C<64>, C<1>>>>, AutoVectorizingCopyWithAssumedAlignment<128>, SM90_TMA_STORE, ComposedLayout<Swizzle<2, 4, 3>, smem_ptr_flag_bits<8>, Layout<tuple<C<8>, C<64>>, tuple<C<64>, C<1>>>>, AutoVectorizingCopyWithAssumedAlignment<128>, AutoVectorizingCopyWithAssumedAlignment<128>>, void, void>>(Params) (1, 448, 1)x(256, 1, 1), Device 0, CC 10.0, Invocations 1
+    Warning: The result was collected with the Work ID feature enabled.                                                
+    This could lower the count of clusters, blocks, warps and threads launched on the device.                          
+    Metrics that depend on such counts would be affected accordingly. There may be improvements in the future to       
+    address this.                                                                                                      
+
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ----------- -------- -------- --------
+    Metric Name             Metric Unit  Minimum  Maximum  Average
+    ----------------------- ----------- -------- -------- --------
+    DRAM Frequency                  Ghz     3.99     3.99     3.99
+    SM Frequency                    Ghz     1.03     1.03     1.03
+    Elapsed Cycles                cycle 63729.00 63729.00 63729.00
+    Memory Throughput                 %    59.33    59.33    59.33
+    DRAM Throughput                   %    59.33    59.33    59.33
+    Duration                         us    60.64    60.64    60.64
+    L1/TEX Cache Throughput           %    51.31    51.31    51.31
+    L2 Cache Throughput               %    57.14    57.14    57.14
+    SM Active Cycles              cycle 48330.54 48330.54 48330.54
+    Compute (SM) Throughput           %    42.74    42.74    42.74
+    ----------------------- ----------- -------- -------- --------
+
+    Section: GPU and Memory Workload Distribution
+    -------------------------- ----------- ----------- ----------- -----------
+    Metric Name                Metric Unit     Minimum     Maximum     Average
+    -------------------------- ----------- ----------- ----------- -----------
+    Average DRAM Active Cycles       cycle   116621.50   116621.50   116621.50
+    Total DRAM Elapsed Cycles        cycle 15490560.00 15490560.00 15490560.00
+    Average L1 Active Cycles         cycle    48330.54    48330.54    48330.54
+    Total L1 Elapsed Cycles          cycle  9347594.00  9347594.00  9347594.00
+    Average L2 Active Cycles         cycle    56349.20    56349.20    56349.20
+    Total L2 Elapsed Cycles          cycle 12859484.00 12859484.00 12859484.00
+    Average SM Active Cycles         cycle    48330.54    48330.54    48330.54
+    Total SM Elapsed Cycles          cycle  9347594.00  9347594.00  9347594.00
+    Average SMSP Active Cycles       cycle    48619.31    48619.31    48619.31
+    Total SMSP Elapsed Cycles        cycle 37390376.00 37390376.00 37390376.00
+    -------------------------- ----------- ----------- ----------- -----------
+
+    Section: Launch Statistics
+    -------------------------------- --------------- --------- --------- ---------
+    Metric Name                          Metric Unit   Minimum   Maximum   Average
+    -------------------------------- --------------- --------- --------- ---------
+    Block Size                                          256.00    256.00    256.00
+    Cluster Size                                          0.00      0.00      0.00
+    Grid Size                                           448.00    448.00    448.00
+    Registers Per Thread             register/thread    216.00    216.00    216.00
+    Shared Memory Configuration Size           Kbyte    233.47    233.47    233.47
+    Driver Shared Memory Per Block       Kbyte/block      1.02      1.02      1.02
+    Dynamic Shared Memory Per Block      Kbyte/block    226.30    226.30    226.30
+    Static Shared Memory Per Block        byte/block      0.00      0.00      0.00
+    # SMs                                         SM    148.00    148.00    148.00
+    Stack Size                                         1024.00   1024.00   1024.00
+    Threads                                   thread 114688.00 114688.00 114688.00
+    # TPCs                                               74.00     74.00     74.00
+    Uses Green Context                                    0.00      0.00      0.00
+    Waves Per SM                                          3.03      3.03      3.03
+    -------------------------------- --------------- --------- --------- ---------
+
+    Section: Occupancy
+    ------------------------------- ----------- ------- ------- -------
+    Metric Name                     Metric Unit Minimum Maximum Average
+    ------------------------------- ----------- ------- ------- -------
+    Max Active Clusters                 cluster    0.00    0.00    0.00
+    Max Cluster Size                      block    8.00    8.00    8.00
+    Overall GPU Occupancy                     %    0.00    0.00    0.00
+    Cluster Occupancy                         %    0.00    0.00    0.00
+    Block Limit Barriers                  block    9.00    9.00    9.00
+    Block Limit SM                        block   32.00   32.00   32.00
+    Block Limit Registers                 block    1.00    1.00    1.00
+    Block Limit Shared Mem                block    1.00    1.00    1.00
+    Block Limit Warps                     block    8.00    8.00    8.00
+    Theoretical Active Warps per SM        warp    8.00    8.00    8.00
+    Theoretical Occupancy                     %   12.50   12.50   12.50
+    Achieved Occupancy                        %   10.88   10.88   10.88
+    Achieved Active Warps Per SM           warp    6.96    6.96    6.96
+    ------------------------------- ----------- ------- ------- -------
+
+  Note: The shown averages are calculated as the arithmetic mean of the metric values after the evaluation of the    
+  metrics for each individual kernel launch.                                                                         
+  If aggregating across varying launch configurations (like shared memory, cache config settings), the arithmetic    
+  mean can be misleading and looking at the individual results is recommended instead.                               
+  This output mode is backwards compatible to the per-kernel summary output of nvprof                                
+

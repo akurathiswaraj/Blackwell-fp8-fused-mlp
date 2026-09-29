@@ -1,0 +1,21 @@
+[1525] python3.12@127.0.0.1
+  void device_kernel<gemm::GemmUniversal<cute::tuple<int, int, int, int>, gemm::CollectiveMma<gemm::MainloopSm100TmaUmmaWarpSpecialized<8, 1, 4, cute::tuple<cute::C<1>, cute::C<2>, cute::C<1>>>, cute::tuple<cute::C<64>, cute::C<128>, cute::C<128>>, float_e4m3_t, cute::tuple<long, cute::C<1>, long>, float_e4m3_t, cute::tuple<long, cute::C<1>, long>, cute::TiledMMA<cute::MMA_Atom<cute::MMA_Traits<cute::SM100_MMA_F8F6F4_SS, float_e4m3_t, float_e4m3_t, float, cute::C<64>, cute::C<128>, cute::integral_constant<cute::Major, 0>, cute::integral_constant<cute::Major, 0>, cute::integral_constant<cute::ScaleIn, 0>, cute::integral_constant<cute::ScaleIn, 0>>>, cute::Layout<cute::tuple<cute::C<1>, cute::C<1>, cute::C<1>>, cute::tuple<cute::C<0>, cute::C<0>, cute::C<0>>>, cute::tuple<cute::Underscore, cute::Underscore, cute::Underscore>>, cute::SM90_TMA_LOAD_MULTICAST, cute::ComposedLayout<cute::Swizzle<3, 4, 3>, cute::smem_ptr_flag_bits<8>, cute::Layout<cute::tuple<cute::C<8>, cute::C<128>>, cute::tuple<cute::C<128>, cute::C<1>>>>, void, cute::identity, cute::SM90_TMA_LOAD, cute::ComposedLayout<cute::Swizzle<3, 4, 3>, cute::smem_ptr_flag_bits<8>, cute::Layout<cute::tuple<cute::C<8>, cute::C<128>>, cute::tuple<cute::C<128>, cute::C<1>>>>, void, cute::identity>, epilogue::CollectiveEpilogue<epilogue::Sm100TmaWarpSpecialized<4, 2, 16, 1, 0>, cute::tuple<cute::C<64>, cute::C<128>, cute::C<128>>, cute::tuple<cute::Layout<cute::C<64>, cute::C<1>>, cute::Layout<cute::C<32>, cute::C<1>>>, bfloat16_t, cute::tuple<long, cute::C<1>, long>, bfloat16_t, cute::tuple<long, cute::C<1>, long>, epilogue::FusionCallbacks<epilogue::Sm100TmaWarpSpecialized<4, 2, 16, 1, 0>, epilogue::LinearCombination<bfloat16_t, float, bfloat16_t, float, 2>, cute::tuple<cute::C<64>, cute::C<128>, cute::C<128>>, cute::tuple<cute::Layout<cute::C<64>, cute::C<1>>, cute::Layout<cute::C<32>, cute::C<1>>>, >, cute::SM100_TMEM_LOAD_16dp256b4x, cute::SM90_TMA_LOAD, cute::ComposedLayout<cute::Swizzle<2, 4, 3>, cute::smem_ptr_flag_bits<16>, cute::Layout<cute::tuple<cute::C<8>, cute::C<32>>, cute::tuple<cute::C<32>, cute::C<1>>>>, cute::SM75_U32x4_LDSM_N, cute::SM90_TMA_STORE, cute::ComposedLayout<cute::Swizzle<2, 4, 3>, cute::smem_ptr_flag_bits<16>, cute::Layout<cute::tuple<cute::C<8>, cute::C<32>>, cute::tuple<cute::C<32>, cute::C<1>>>>, cute::SM90_U32x4_STSM_N, cute::AutoVectorizingCopyWithAssumedAlignment<128>>, void, void>>(T1::Params) (1, 448, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 10.0
+    Section: Command line profiler metrics
+    --------------------- ----------- ------------
+    Metric Name           Metric Unit Metric Value
+    --------------------- ----------- ------------
+    dram__bytes.sum             Mbyte       479.77
+    dram__bytes_read.sum        Mbyte       471.57
+    dram__bytes_write.sum       Mbyte         8.20
+    --------------------- ----------- ------------
+
+  swiglu_amax_quantize_kernel(const bfloat16_t *, float_e4m3_t *, long, long, float, float *) (7168, 1, 1)x(256, 1, 1), Context 1, Stream 7, Device 0, CC 10.0
+    Section: Command line profiler metrics
+    --------------------- ----------- ------------
+    Metric Name           Metric Unit Metric Value
+    --------------------- ----------- ------------
+    dram__bytes.sum             Mbyte         7.35
+    dram__bytes_read.sum        Mbyte         7.35
+    dram__bytes_write.sum        byte            0
+    --------------------- ----------- ------------
+

@@ -1,0 +1,73 @@
+{
+  "methodology": {
+    "rounds": 30,
+    "warmups": 5,
+    "cold_l2": true,
+    "l2_flush_mib": 512,
+    "alternating_three_way_order": true,
+    "cuda_event_timing": true,
+    "timed_host_scalar_reads": false
+  },
+  "results": [
+    {
+      "M": 1,
+      "N": 57344,
+      "K": 8192,
+      "tile": "64x128x128",
+      "baseline_cluster": "1x1x1",
+      "multicast_cluster": "1x2x1",
+      "baseline_ms": 0.09932799637317657,
+      "cluster_n2_ms": 0.09932799637317657,
+      "cublaslt_ms": 0.09318400174379349,
+      "cluster_speedup_vs_baseline": 1.0,
+      "cluster_speedup_vs_cublaslt": 0.9381443817078519,
+      "cluster_vs_baseline_rel_l2": 0.0,
+      "cublas_vs_baseline_rel_l2": 0.0
+    },
+    {
+      "M": 4,
+      "N": 57344,
+      "K": 8192,
+      "tile": "64x128x128",
+      "baseline_cluster": "1x1x1",
+      "multicast_cluster": "1x2x1",
+      "baseline_ms": 0.09929600358009338,
+      "cluster_n2_ms": 0.09929600358009338,
+      "cublaslt_ms": 0.09116800129413605,
+      "cluster_speedup_vs_baseline": 1.0,
+      "cluster_speedup_vs_cublaslt": 0.9181437118020446,
+      "cluster_vs_baseline_rel_l2": 0.0,
+      "cublas_vs_baseline_rel_l2": 0.0
+    },
+    {
+      "M": 16,
+      "N": 57344,
+      "K": 8192,
+      "tile": "64x128x128",
+      "baseline_cluster": "1x1x1",
+      "multicast_cluster": "1x2x1",
+      "baseline_ms": 0.09728000313043594,
+      "cluster_n2_ms": 0.09728000313043594,
+      "cublaslt_ms": 0.09728000313043594,
+      "cluster_speedup_vs_baseline": 1.0,
+      "cluster_speedup_vs_cublaslt": 1.0,
+      "cluster_vs_baseline_rel_l2": 0.0,
+      "cublas_vs_baseline_rel_l2": 0.0
+    },
+    {
+      "M": 64,
+      "N": 57344,
+      "K": 8192,
+      "tile": "64x128x128",
+      "baseline_cluster": "1x1x1",
+      "multicast_cluster": "1x2x1",
+      "baseline_ms": 0.09728000313043594,
+      "cluster_n2_ms": 0.09929600358009338,
+      "cublaslt_ms": 0.09934399649500847,
+      "cluster_speedup_vs_baseline": 0.9796970635577361,
+      "cluster_speedup_vs_cublaslt": 1.000483331787632,
+      "cluster_vs_baseline_rel_l2": 0.0,
+      "cublas_vs_baseline_rel_l2": 0.0
+    }
+  ]
+}

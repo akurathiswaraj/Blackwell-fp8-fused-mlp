@@ -1,0 +1,31 @@
+{
+  "gpu": "NVIDIA B200",
+  "shape": "qkv",
+  "M": 1,
+  "N": 10240,
+  "K": 8192,
+  "tile": "64x128x128",
+  "output_dtype": "bfloat16",
+  "cache_mode": "cold_l2",
+  "l2_flush_bytes": 536870912,
+  "rounds": 50,
+  "cutlass_median_ms": 0.02971199993044138,
+  "cutlass_min_ms": 0.02956799976527691,
+  "cutlass_max_ms": 0.03174399957060814,
+  "cublaslt_median_ms": 0.03174399957060814,
+  "cublaslt_min_ms": 0.02969600073993206,
+  "cublaslt_max_ms": 0.031968001276254654,
+  "cutlass_speedup": 1.068389864193722,
+  "custom_vs_dequant_fp32": {
+    "max_abs": 0.99072265625,
+    "rel_l2": 0.0016477812314406037
+  },
+  "custom_vs_cublaslt": {
+    "max_abs": 0.001953125,
+    "rel_l2": 2.1415915796296758e-07
+  },
+  "custom_vs_original_fp32": {
+    "max_abs": 13.722152709960938,
+    "rel_l2": 0.03806598484516144
+  }
+}
