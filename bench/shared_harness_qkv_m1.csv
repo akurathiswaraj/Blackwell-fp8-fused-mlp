@@ -1,0 +1,2 @@
+gpu,shape,M,N,K,tile,output_dtype,cache_mode,l2_flush_bytes,rounds,cutlass_median_ms,cutlass_min_ms,cutlass_max_ms,cublaslt_median_ms,cublaslt_min_ms,cublaslt_max_ms,cutlass_speedup
+NVIDIA B200,qkv,1,10240,8192,64x128x128,bfloat16,cold_l2,536870912,50,0.02971199993044138,0.02956799976527691,0.03174399957060814,0.03174399957060814,0.02969600073993206,0.031968001276254654,1.068389864193722
