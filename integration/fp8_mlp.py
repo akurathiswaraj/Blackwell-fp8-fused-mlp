@@ -2,6 +2,7 @@ import torch
 import torch.nn.functional as F
 
 DECODE_MAX_M = 64
+WARP_AMAX_MIN_M = 40
 FP8_MAX = 448.0
 
 def interleave_gate_up_weight(
@@ -39,9 +40,26 @@ def custom_decode_mlp(
     running_amax,
     direct_extension,
     down_extension,
+    warp_amax_extension=None,
 ):
+    m_value = int(activation.shape[0])
+
+    selected_direct_extension = (
+        direct_extension
+    )
+
+    if (
+        warp_amax_extension is not None
+        and WARP_AMAX_MIN_M
+        <= m_value
+        <= DECODE_MAX_M
+    ):
+        selected_direct_extension = (
+            warp_amax_extension
+        )
+
     product_fp8 = (
-        direct_extension.swiglu_direct(
+        selected_direct_extension.swiglu_direct(
             activation,
             interleaved_gate_up_weight,
             float(gate_up_alpha),
@@ -151,6 +169,7 @@ def dispatch_mlp(
     running_amax,
     direct_extension,
     down_extension,
+    warp_amax_extension=None,
 ):
     if activation.shape[0] <= DECODE_MAX_M:
         gate_up_alpha = (
@@ -173,6 +192,9 @@ def dispatch_mlp(
             running_amax,
             direct_extension,
             down_extension,
+            warp_amax_extension=(
+                warp_amax_extension
+            ),
         )
 
     return cublaslt_mlp(

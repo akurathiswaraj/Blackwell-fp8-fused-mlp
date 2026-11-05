@@ -1,0 +1,3 @@
+mode,duration_ns,global_reduction_bytes,global_reduction_sectors,xbar_reduction_sectors,registers_per_thread
+original,100032,1835008,57344,57344,97
+warp_amax,89888,57344,1792,1792,99

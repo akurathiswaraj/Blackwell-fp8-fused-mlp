@@ -3,13 +3,35 @@
 SM100-specific FP8 SwiGLU kernels for Llama 3.1 70B, implemented with
 CUDA, CUTLASS/CuTe, TMA, `tcgen05` tensor-core MMA, and TMEM.
 
-On an NVIDIA B200, the final direct-epilogue implementation reduced complete
-MLP decode latency by up to **27.1% (1.373x)** against a cuBLASLt/PyTorch
-baseline. It won all **28/28 repeated decode batches** across
-`M={1,4,16,64}`. The decode-specialized kernel loses on prefill, so the
-runtime deliberately falls back to cuBLASLt for `M>=512`.
+On an NVIDIA B200 with driver 610.57.04, the optimized
+shape-aware implementation reduced complete Llama 70B MLP decode latency by
+up to **38.4% (1.623x)** against a cuBLASLt/PyTorch baseline. It won
+**56/56 repeated batches** across
+`M={1,4,16,32,40,48,56,64}`. The runtime selects the original direct
+epilogue below M=40, the warp-reduced amax epilogue for M=40 through M=64,
+and the cuBLASLt/PyTorch fallback above M=64.
 
-## Final results
+## Optimized dispatch results (driver 610.57.04)
+
+These are paired cold-L2 measurements using seven batches of 20 rounds per
+shape. Absolute timings should only be compared within this environment.
+
+| M | Selected kernel | Custom | cuBLASLt/PyTorch | Speedup | Reduction | Wins |
+|---:|---|---:|---:|---:|---:|---:|
+| 1 | original | 0.167264 ms | 0.220176 ms | 1.316x | 24.0% | 7/7 |
+| 4 | original | 0.167328 ms | 0.221824 ms | 1.326x | 24.6% | 7/7 |
+| 16 | original | 0.150368 ms | 0.229536 ms | 1.526x | 34.5% | 7/7 |
+| 32 | original | 0.151184 ms | 0.233984 ms | 1.548x | 35.4% | 7/7 |
+| 40 | warp-amax | 0.150128 ms | 0.235760 ms | 1.570x | 36.3% | 7/7 |
+| 48 | warp-amax | 0.150688 ms | 0.239776 ms | 1.591x | 37.2% | 7/7 |
+| 56 | warp-amax | 0.150896 ms | 0.242672 ms | 1.608x | 37.8% | 7/7 |
+| 64 | warp-amax | 0.151040 ms | 0.245088 ms | 1.623x | 38.4% | 7/7 |
+
+Relative L2 error remained approximately `1.6e-2`. The raw, batch-level, and
+summary measurements are in `bench/optimized_dispatch_decode*.csv` and
+`results/optimized_dispatch_decode.json`.
+
+## Earlier direct-only release (driver 580.95.05)
 
 The benchmark uses the Llama 3.1 70B MLP dimensions: hidden size 8192 and
 intermediate size 28672.
@@ -32,8 +54,7 @@ batch-level measurements are under `bench/`.
 | 2048 | 2.319376 ms | 1.873952 ms | 0.808x |
 | 8192 | 11.914752 ms | 7.585264 ms | 0.637x |
 
-The supported dispatcher uses the custom path for `M<=64` and cuBLASLt for
-`M>=512`. No prefill speedup is claimed.
+The supported dispatcher uses the original direct kernel for `M<40`, the warp-amax kernel for `40<=M<=64`, and the cuBLASLt/PyTorch fallback for `M>64`. No prefill speedup is claimed.
 
 ## Architecture
 
@@ -56,8 +77,9 @@ compact `[M,N]` FP8 result. It does not materialize the former global BF16
 `[M,2N]` gate/up tensor. A decode-tuned FP8 down projection produces BF16
 output.
 
-The supported source is
-`integration/sm100_fp8_swiglu_direct_torch.cu`. CUTLASS itself remains pinned
+The supported sources are
+`integration/sm100_fp8_swiglu_direct_torch.cu` and
+`integration/sm100_fp8_swiglu_direct_warp_amax_torch.cu`. CUTLASS itself remains pinned
 and unmodified.
 
 ## Traffic measurements
@@ -75,6 +97,27 @@ Targeted Nsight Compute measurements found:
 
 The M=8192 traffic reduction does not translate to a latency win because the
 scalar epilogue is inefficient in the compute-bound prefill regime.
+
+## Warp-amax profiler evidence
+
+The original epilogue issued a global `atomicMax` while processing every
+valid output. The optimized variant accumulates one maximum per thread,
+performs a warp shuffle reduction, and lets lane zero issue one global
+update per warp.
+
+At `M=64`, Nsight Compute 2025.1.1 reported:
+
+| Metric | Original | Warp-amax | Change |
+|---|---:|---:|---:|
+| Global reduction sectors | 57,344 | 1,792 | 32x fewer |
+| Global reduction bytes | 1,835,008 | 57,344 | 32x fewer |
+| Registers per thread | 97 | 99 | +2 |
+| Profiled duration | 100.032 us | 89.888 us | 10.1% lower |
+
+SM100 classified the unsigned `atomicMax` under the `op_red` counters rather
+than `op_atom`. Global-reduction traffic decreased by **96.875%**. Because
+Modal did not permit clock locking, the NCU duration is supporting evidence;
+the paired cold-L2 benchmark remains the authoritative latency measurement.
 
 ## Environment
 

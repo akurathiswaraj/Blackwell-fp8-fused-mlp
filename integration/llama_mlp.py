@@ -25,6 +25,7 @@ class BlackwellFP8LlamaMLP(nn.Module):
         quant_multiplier,
         direct_extension,
         down_extension,
+        warp_amax_extension=None,
     ):
         super().__init__()
 
@@ -109,6 +110,11 @@ class BlackwellFP8LlamaMLP(nn.Module):
             "_down_extension",
             down_extension,
         )
+        object.__setattr__(
+            self,
+            "_warp_amax_extension",
+            warp_amax_extension,
+        )
 
     def reset_amax(self):
         self.running_amax.zero_()
@@ -157,6 +163,9 @@ class BlackwellFP8LlamaMLP(nn.Module):
             self.running_amax,
             self._direct_extension,
             self._down_extension,
+            warp_amax_extension=(
+                self._warp_amax_extension
+            ),
         )
 
         return output.reshape(

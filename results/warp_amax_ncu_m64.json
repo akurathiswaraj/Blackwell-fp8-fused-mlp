@@ -1,0 +1,38 @@
+{
+  "created_at_utc": "2026-11-05T21:37:16.311005+00:00",
+  "hardware": "NVIDIA B200",
+  "driver_version": "610.57.04",
+  "cuda_toolkit": "12.8.93",
+  "nsight_compute": "2025.1.1",
+  "cutlass_commit": "ad7b2f5e84fcfa124cb02b91d5bd26d238c0459e",
+  "shape": {
+    "M": 64,
+    "N": 28672,
+    "K": 8192
+  },
+  "clock_control": "none",
+  "original": {
+    "mode": "original",
+    "duration_ns": 100032,
+    "global_reduction_bytes": 1835008,
+    "global_reduction_sectors": 57344,
+    "xbar_reduction_sectors": 57344,
+    "registers_per_thread": 97
+  },
+  "warp_amax": {
+    "mode": "warp_amax",
+    "duration_ns": 89888,
+    "global_reduction_bytes": 57344,
+    "global_reduction_sectors": 1792,
+    "xbar_reduction_sectors": 1792,
+    "registers_per_thread": 99
+  },
+  "derived": {
+    "global_reduction_sector_factor": 32.0,
+    "global_reduction_byte_factor": 32.0,
+    "global_reduction_traffic_decrease_percent": 96.875,
+    "profiled_kernel_speedup": 1.1128515485938055,
+    "profiled_kernel_latency_reduction_percent": 10.14075495841331
+  },
+  "interpretation": "Warp-level amax reduction lowered L1TEX global reduction traffic by exactly 32x. Profiled duration is supporting evidence only because Modal did not permit GPU clock locking."
+}

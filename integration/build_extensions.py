@@ -118,3 +118,45 @@ def build_extensions():
     )
 
     return direct, fallback, down
+
+def build_warp_amax_extension():
+    """Build the warp-reduced amax direct epilogue."""
+
+    build_directory = (
+        PROJECT
+        / "build"
+        / "torch_extension_swiglu_warp_amax_release_v1"
+    )
+
+    build_directory.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    return load(
+        name="sm100_fp8_swiglu_warp_amax_release_ext_v1",
+        sources=[
+            str(
+                PROJECT
+                / "integration"
+                / "sm100_fp8_swiglu_direct_warp_amax_torch.cu"
+            )
+        ],
+        build_directory=str(build_directory),
+        **COMMON,
+    )
+
+
+def build_optimized_extensions():
+    """Build original, optimized, fallback, and down kernels."""
+
+    direct, fallback, down = build_extensions()
+    warp_amax = build_warp_amax_extension()
+
+    return (
+        direct,
+        warp_amax,
+        fallback,
+        down,
+    )
+

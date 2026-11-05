@@ -42,11 +42,13 @@ that produces BF16 output.
 
 ## Dispatch policy
 
-- `M<=64`: direct custom decode path.
-- `M>=512`: cuBLASLt/PyTorch path.
+- `M<40`: original direct-store epilogue.
+- `40<=M<=64`: warp-reduced amax epilogue.
+- `M>64`: cuBLASLt/PyTorch fallback.
 
-The explicit split is based on measurements rather than an assumption that one
-kernel should serve both regimes.
+The threshold comes from a paired shape sweep. The warp-reduced variant
+became consistently beneficial at M=40, while the original kernel remained
+preferable for smaller decode shapes.
 
 ## Correctness
 
@@ -89,6 +91,35 @@ The eliminated logical tensor traffic is exactly twice the size of a BF16
 For `M=64`, `N=28672`, this is 14 MiB. Physical NCU DRAM counters are reported
 separately because caching and memory transactions mean physical traffic need
 not equal logical tensor bytes.
+
+## Warp-reduced amax optimization
+
+The original direct epilogue updated the caller-owned running amax using a
+global unsigned `atomicMax` while processing each valid output. The optimized
+variant instead:
+
+1. accumulates a local maximum per epilogue thread;
+2. reduces those maxima with `__shfl_down_sync`;
+3. lets lane zero perform one global update per warp.
+
+The output tensor and running amax are bit-exact with the original kernel for
+the tested decode shapes. At M=64, Nsight Compute measured global reduction
+traffic falling from 57,344 to 1,792 sectors and from 1,835,008 to 57,344
+bytes: exactly 32x fewer transactions and a 96.875% decrease.
+
+The additional reduction logic increased register use from 97 to 99 registers
+per thread. The runtime therefore uses this variant only for measured shapes
+where it improves latency.
+
+## Optimized performance on driver 610.57.04
+
+The shape-aware dispatcher achieved 1.316x to 1.623x versus the matched
+cuBLASLt/PyTorch pipeline across M={1,4,16,32,40,48,56,64}, winning all
+56/56 repeated batches. The best result was 1.623x, or 38.4% lower latency,
+at M=64.
+
+These measurements are a separate environment from the earlier driver
+580.95.05 release. Absolute timings are not compared across driver versions.
 
 ## Honest limitations
 
