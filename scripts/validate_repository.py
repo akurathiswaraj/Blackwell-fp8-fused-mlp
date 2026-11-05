@@ -198,6 +198,7 @@ def validate_required_files():
         "bench/optimized_dispatch_decode_raw.csv",
 
         "results/optimized_dispatch_decode.json",
+        "results/full_mlp_warp_amax_ab_m64.json",
         
         "profiles/profile_warp_amax_atomic.py",
 

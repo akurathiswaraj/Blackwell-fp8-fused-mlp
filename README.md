@@ -98,6 +98,26 @@ Targeted Nsight Compute measurements found:
 The M=8192 traffic reduction does not translate to a latency win because the
 scalar epilogue is inefficient in the compute-bound prefill regime.
 
+## Same-environment warp-amax A/B
+
+To isolate the effect of warp-reduced amax from driver and baseline changes,
+the original direct epilogue, warp-amax variant, and cuBLASLt/PyTorch pipeline
+were measured together on driver 610.57.04 at M=64.
+
+| Implementation | Full-MLP latency | Relative result |
+|---|---:|---:|
+| Warp-amax | 0.147840 ms | 1.046x vs original |
+| Original direct epilogue | 0.154576 ms | reference |
+| cuBLASLt/PyTorch | 0.235920 ms | warp-amax is 1.596x faster |
+
+Warp-amax lowered full-MLP latency by **4.4%** versus the original and won
+7/7 paired batches. This is the isolated optimization effect. The earlier
+1.373x result used driver 580.95.05, while the later 1.623x dispatch result
+used driver 610.57.04; those cross-driver speedups are not compared to infer
+the benefit of warp-amax. See
+[`results/full_mlp_warp_amax_ab_m64.json`](results/full_mlp_warp_amax_ab_m64.json)
+for batch medians and methodology.
+
 ## Warp-amax profiler evidence
 
 The original epilogue issued a global `atomicMax` while processing every

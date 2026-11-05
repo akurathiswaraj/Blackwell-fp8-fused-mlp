@@ -92,6 +92,20 @@ For `M=64`, `N=28672`, this is 14 MiB. Physical NCU DRAM counters are reported
 separately because caching and memory transactions mean physical traffic need
 not equal logical tensor bytes.
 
+## Same-environment optimization isolation
+
+A paired three-way M=64 run on driver 610.57.04 measured the warp-amax
+full MLP at 0.147840 ms, the original direct-epilogue MLP at 0.154576 ms,
+and the cuBLASLt/PyTorch pipeline at 0.235920 ms. Warp-amax therefore
+improved full-MLP latency by 4.4% (1.046x) over the original and won all
+7/7 batches. The same run measured 1.596x versus cuBLASLt.
+
+This A/B result isolates the optimization. The 1.373x result from driver
+580.95.05 and the 1.623x optimized-dispatch result from driver 610.57.04
+remain valid within their respective environments, but their difference is
+not attributed to warp-amax. Structured evidence is stored in
+`results/full_mlp_warp_amax_ab_m64.json`.
+
 ## Warp-reduced amax optimization
 
 The original direct epilogue updated the caller-owned running amax using a
