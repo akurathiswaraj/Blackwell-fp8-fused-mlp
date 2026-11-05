@@ -128,5 +128,8 @@
     "It still materializes the BF16 [M, 2N] combined projection.",
     "The 1x2x1 TMA multicast experiment did not improve standalone GEMM latency.",
     "Decode tiles are inappropriate for prefill; production dispatch falls back to cuBLASLt."
-  ]
+  ],
+  "status": "superseded",
+  "superseded_by": "results/final_summary_optimized_dispatch.json",
+  "superseded_reason": "Historical pre-direct-epilogue summary retained for provenance; it is not the current release result."
 }

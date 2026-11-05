@@ -1,0 +1,100 @@
+{
+  "created_at_utc": "2026-11-05T22:03:06.804237+00:00",
+  "measurement_status": "recorded_from_completed_modal_run",
+  "modal_run": "https://modal.com/apps/swaraja18/main/ap-QwL5vUr9vgBepyHy6OfpKj",
+  "hardware": "NVIDIA B200",
+  "driver_version": "610.57.04",
+  "cuda_toolkit": "12.8.93",
+  "pytorch": "2.8.0+cu129",
+  "cutlass_commit": "ad7b2f5e84fcfa124cb02b91d5bd26d238c0459e",
+  "shape": {
+    "M": 64,
+    "N": 28672,
+    "K": 8192
+  },
+  "methodology": {
+    "comparison": "warp-amax vs original vs cuBLASLt/PyTorch",
+    "l2_flush_bytes": 536870912,
+    "batches": 7,
+    "rounds_per_batch": 20,
+    "alternating_order": true,
+    "cuda_event_timing": true
+  },
+  "pooled_medians_ms": {
+    "warp_amax": 0.14784,
+    "original": 0.154576,
+    "cublaslt": 0.23592
+  },
+  "derived": {
+    "warp_amax_vs_original_speedup": 1.0455627705627706,
+    "warp_amax_vs_original_latency_reduction_percent": 4.357726943380602,
+    "warp_amax_vs_cublaslt_speedup": 1.5957792207792207,
+    "warp_amax_vs_cublaslt_latency_reduction_percent": 37.33468972533062,
+    "warp_amax_wins_vs_original": 7,
+    "warp_amax_wins_vs_cublaslt": 7,
+    "batches_total": 7
+  },
+  "correctness": {
+    "warp_amax_bit_exact_vs_original": true,
+    "relative_l2_vs_cublaslt": 0.01636728
+  },
+  "batch_medians": [
+    {
+      "batch": 1,
+      "warp_amax_ms": 0.147648,
+      "original_ms": 0.154096,
+      "cublaslt_ms": 0.236224,
+      "warp_amax_vs_original": 1.0436714347637626,
+      "warp_amax_vs_cublaslt": 1.599913307325531
+    },
+    {
+      "batch": 2,
+      "warp_amax_ms": 0.147856,
+      "original_ms": 0.15456,
+      "cublaslt_ms": 0.23632,
+      "warp_amax_vs_original": 1.0453414132669625,
+      "warp_amax_vs_cublaslt": 1.5983118710096311
+    },
+    {
+      "batch": 3,
+      "warp_amax_ms": 0.1484,
+      "original_ms": 0.155344,
+      "cublaslt_ms": 0.235504,
+      "warp_amax_vs_original": 1.0467924528301886,
+      "warp_amax_vs_cublaslt": 1.586954177897574
+    },
+    {
+      "batch": 4,
+      "warp_amax_ms": 0.147712,
+      "original_ms": 0.154704,
+      "cublaslt_ms": 0.235664,
+      "warp_amax_vs_original": 1.0473353552859619,
+      "warp_amax_vs_cublaslt": 1.5954289428076256
+    },
+    {
+      "batch": 5,
+      "warp_amax_ms": 0.147472,
+      "original_ms": 0.154624,
+      "cublaslt_ms": 0.23584,
+      "warp_amax_vs_original": 1.048497341868287,
+      "warp_amax_vs_cublaslt": 1.5992188347618532
+    },
+    {
+      "batch": 6,
+      "warp_amax_ms": 0.147984,
+      "original_ms": 0.154032,
+      "cublaslt_ms": 0.236624,
+      "warp_amax_vs_original": 1.0408692831657476,
+      "warp_amax_vs_cublaslt": 1.598983673910693
+    },
+    {
+      "batch": 7,
+      "warp_amax_ms": 0.147552,
+      "original_ms": 0.1552,
+      "cublaslt_ms": 0.235344,
+      "warp_amax_vs_original": 1.0518325742788983,
+      "warp_amax_vs_cublaslt": 1.5949902407286924
+    }
+  ],
+  "interpretation": "This same-environment A/B isolates the warp-amax change: 4.4% lower full-MLP latency than the original direct epilogue at M=64. The larger cuBLASLt pipeline speedup is reported separately and is not attributed solely to warp-amax."
+}
